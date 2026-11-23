@@ -20,23 +20,23 @@ A comprehensive, step-by-step IT disaster recovery and hardware diagnostics manu
 
 ```mermaid
 flowchart TD
-    A[Workstation Hits BSOD Loop] --> B{Boots Normally After Restart?}
-    B -- Yes --> C[Stop: Monitor System Only]
-    B -- No --> D[Boot into Vendor UEFI Diagnostics<br/>Lenovo: F12 | HP: ESC/F2 | Dell: F12]
+    A["Workstation Hits BSOD Loop"] --> B{"Boots Normally After Restart?"}
+    B -- "Yes" --> C["Stop: Monitor System Only"]
+    B -- "No" --> D["Boot into Vendor UEFI Diagnostics<br/>Lenovo: F12 / HP: ESC+F2 / Dell: F12"]
     
-    D --> E{Hardware Test Passed?}
-    E -- No (Hardware Failure) --> F[Record Failure ID & Run<br/>wmic bios get serialnumber]
-    F --> G[Submit Vendor Warranty Claim]
+    D --> E{"Hardware Test Passed?"}
+    E -- "No (Hardware Failure)" --> F["Record Failure ID & Run<br/>wmic bios get serialnumber"]
+    F --> G["Submit Vendor Warranty Claim"]
     
-    E -- Yes (OS Corruption) --> H[Enter WinRE → Troubleshoot → CMD]
-    H --> I{Is Drive C: Locked by BitLocker?}
-    I -- Yes --> J[Run: manage-bde -off C:<br/>Wait for Decryption]
-    I -- No --> K[Launch notepad.exe → File → Open]
+    E -- "Yes (OS Corruption)" --> H["Enter WinRE -> Troubleshoot -> CMD"]
+    H --> I{"Is Drive C: Locked by BitLocker?"}
+    I -- "Yes" --> J["Run: manage-bde -off C:<br/>Wait for Decryption"]
+    I -- "No" --> K["Launch notepad.exe -> File -> Open"]
     J --> K
     
-    K --> L[Backup Desktop, Documents & .ost<br/>to External USB Drive]
-    L --> M[Create Bootable Windows USB<br/>via Media Creation Tool + Rufus]
-    M --> N[Boot from USB → Custom Install<br/>& Restore Drivers]
+    K --> L["Backup Desktop, Documents & .ost<br/>to External USB Drive"]
+    L --> M["Create Bootable Windows USB<br/>via Media Creation Tool + Rufus"]
+    M --> N["Boot from USB -> Custom Install<br/>& Restore Drivers"]
 ```
 
 
