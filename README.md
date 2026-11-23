@@ -1,4 +1,4 @@
-# 🛠️ Windows BSOD & BitLocker Disaster Recovery Runbook
+#  Windows BSOD & BitLocker Disaster Recovery Runbook
 
 A comprehensive, step-by-step IT disaster recovery and hardware diagnostics manual designed to help both technical staff and non-technical end users triage Windows Blue Screen of Death (BSOD) boot loops, extract locked user data, manage BitLocker encryption via WinRE, and perform clean OS reinstallations across enterprise laptop vendors.
 
@@ -15,6 +15,30 @@ A comprehensive, step-by-step IT disaster recovery and hardware diagnostics manu
 4. [Disabling BitLocker Encryption via CLI](#4-disabling-bitlocker-encryption-via-cli)
 5. [Creating a Bootable Windows Installation USB](#5-creating-a-bootable-windows-installation-usb)
 6. [Clean Windows OS Reinstallation](#6-clean-windows-os-reinstallation)
+
+## 🔄 Disaster Recovery Decision Flowchart
+
+```mermaid
+flowchart TD
+    A[Workstation Hits BSOD Loop] --> B{Boots Normally After Restart?}
+    B -- Yes --> C[Stop: Monitor System Only]
+    B -- No --> D[Boot into Vendor UEFI Diagnostics<br/>Lenovo: F12 | HP: ESC/F2 | Dell: F12]
+    
+    D --> E{Hardware Test Passed?}
+    E -- No (Hardware Failure) --> F[Record Failure ID & Run<br/>wmic bios get serialnumber]
+    F --> G[Submit Vendor Warranty Claim]
+    
+    E -- Yes (OS Corruption) --> H[Enter WinRE → Troubleshoot → CMD]
+    H --> I{Is Drive C: Locked by BitLocker?}
+    I -- Yes --> J[Run: manage-bde -off C:<br/>Wait for Decryption]
+    I -- No --> K[Launch notepad.exe → File → Open]
+    J --> K
+    
+    K --> L[Backup Desktop, Documents & .ost<br/>to External USB Drive]
+    L --> M[Create Bootable Windows USB<br/>via Media Creation Tool + Rufus]
+    M --> N[Boot from USB → Custom Install<br/>& Restore Drivers]
+```
+
 
 ---
 
