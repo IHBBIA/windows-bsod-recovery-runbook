@@ -72,9 +72,9 @@ Before reinstalling Windows, run built-in UEFI hardware diagnostics to rule out 
 2. Run `wmic bios get serialnumber` to retrieve the hardware ID offline.
 
 ### Official Vendor Warranty Portals
-* **Lenovo:** [://lenovo.com](https://://lenovo.com#/)
-* **HP:** [://hp.com](https://://hp.com)
-* **Dell:** [://dell.com](https://www.://dell.com/)
+* **Lenovo:** [://lenovo.com](https://lenovo.com#/)
+* **HP:** [://hp.com](https://hp.com)
+* **Dell:** [://dell.com](https://www.:dell.com/)
 
 ---
 
